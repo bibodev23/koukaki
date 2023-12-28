@@ -1,0 +1,103 @@
+/**************** MIXINS *******************/
+
+/**************** VARIABLES *******************/
+// Variable en css afin de pouvoir les modifier avec le JS
+:root {
+    --rotate-duration: 12s;
+    --delay-animation: 0s;
+}
+
+//Variable en sccs
+$color-shadow-text-menu: #ff5c00;
+
+/**************** ANIMATIONS *******************/
+@keyframes titleMoov {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    20% {
+        transform: translate(10px, -10px);
+    }
+    40% {
+        transform: translate(-10px, 10px);
+    }
+    60% {
+        transform: translate(15px, -15px);
+    }
+    80% {
+        transform: translate(-15px, 15px);
+    }
+}
+@keyframes fadeInDown {
+    from {
+        transform: translateY(-80px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animation-background {
+    0% {
+        background-position: center center, calc(50% - 180px)175px, calc(50% + 167px)175px;
+      }
+      100% {
+        background-position: center center, calc(-50%);
+      }
+}
+
+/**************** CLASSES ANIMATION *******************/
+
+// Classes pour le translate des sections
+.fadeInDown {
+    animation: fadeInDown 1.3s (--rotate-duration) ease-out both;
+}
+
+.fadeInUp:not(.stay) {
+    animation: fadeInUp 1.3s ease-out both;
+}
+
+// Classe pour la rotation des fleurs
+.rotate-after {
+    &::after {
+        animation: rotate var(--rotate-duration) 0.3s linear both infinite;
+    }
+}
+
+.rotate-after-before {
+    &::after,
+    &::before {
+        animation: rotate var(--rotate-duration) 0.3s linear infinite;
+    }
+}
+// Classe pour l'animation du titre au scroll
+.animationSectionTitle {
+    .fadeOne {
+        animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .fadeTwo {
+        animation: fadeInUp 0.5s 0.3s ease-in both;
+    }
+}

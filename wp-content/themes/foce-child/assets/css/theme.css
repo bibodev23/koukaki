@@ -1,0 +1,511 @@
+/**************** MIXINS *******************/
+/**************** VARIABLES *******************/
+:root {
+  --rotate-duration: 12s;
+  --delay-animation: 0s;
+}
+
+/**************** ANIMATIONS *******************/
+@keyframes titleMoov {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(10px, -10px);
+  }
+  40% {
+    transform: translate(-10px, 10px);
+  }
+  60% {
+    transform: translate(15px, -15px);
+  }
+  80% {
+    transform: translate(-15px, 15px);
+  }
+}
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animation-background {
+  0% {
+    background-position: center center, calc(50% - 180px) 175px, calc(50% + 167px) 175px;
+  }
+  100% {
+    background-position: center center, -50%;
+  }
+}
+/**************** CLASSES ANIMATION *******************/
+.fadeInDown {
+  animation: fadeInDown 1.3s --rotate-duration ease-out both;
+}
+
+.fadeInUp:not(.stay) {
+  animation: fadeInUp 1.3s ease-out both;
+}
+
+.rotate-after::after {
+  animation: rotate var(--rotate-duration) 0.3s linear both infinite;
+}
+
+.rotate-after-before::after, .rotate-after-before::before {
+  animation: rotate var(--rotate-duration) 0.3s linear infinite;
+}
+
+.animationSectionTitle .fadeOne {
+  animation: fadeInUp 0.8s ease-out both;
+}
+.animationSectionTitle .fadeTwo {
+  animation: fadeInUp 0.5s 0.3s ease-in both;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  z-index: 1000;
+}
+header nav .nav-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  padding: 50px;
+  background-color: #ffd5a2;
+}
+header nav .nav-title .title a {
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 700;
+  color: black;
+}
+header nav .nav-title .burger {
+  transform: scale(2);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  right: 5%;
+}
+header nav .nav-links {
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: all 1s ease-in-out;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #fff5e9;
+}
+header nav .nav-links.active {
+  transform: scaleY(1);
+  opacity: 1;
+  height: 98vh;
+  padding: 50px;
+}
+header nav .nav-links ul {
+  list-style-type: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+header nav .nav-links ul li {
+  width: 100%;
+  text-align: center;
+}
+header nav .nav-links ul li a {
+  font-size: 64px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+header nav .nav-links ul li a:hover {
+  text-shadow: 0px 0px 20px #ff5c00;
+  color: black;
+}
+header nav .nav-links ul li::before, header nav .nav-links ul li::after {
+  position: absolute;
+}
+header nav .nav-links ul li:nth-child(2)::before {
+  content: url("../img/menu/cat.png");
+  top: 200px;
+  left: 250px;
+  animation: titleMoov 5s infinite linear both;
+}
+header nav .nav-links ul li:nth-child(2)::after {
+  content: url("../img/menu/Sunflower.png");
+  right: 150px;
+  top: 120px;
+  animation: rotate 12s linear infinite both;
+}
+header nav .nav-links ul li:nth-child(3)::before {
+  content: url("../img/menu/orchid.png");
+  left: 0;
+  top: 80px;
+  animation: rotate 12s linear infinite both;
+}
+header nav .nav-links ul li:nth-child(3)::after {
+  content: url("../img/menu/random_flower.png");
+  right: 0;
+  top: 400px;
+  animation: rotate 12s linear infinite both, toShrink 1s;
+  border: 2px solid red;
+}
+header nav .nav-links ul li:nth-child(4)::before {
+  content: url("../img/menu/Flower.png");
+  left: 180px;
+  animation: rotate 12s linear infinite both;
+}
+header nav .nav-links ul li:nth-child(4)::after {
+  content: url("../img/menu/Group 180.png");
+  right: 200px;
+  top: 450px;
+  transform: scale(0.7);
+}
+header nav .nav-links ul li:nth-child(5)::before {
+  content: url("../img/menu/cat-2.png");
+  left: 0;
+  top: 66%;
+}
+header nav .nav-links ul li:nth-child(5)::after {
+  content: url("../img/hibiscus_footer.png");
+  right: 0;
+  transform: translate(50%, 50%);
+  bottom: 0;
+}
+
+/**************** RESPONSIVE *******************/
+@media all and (max-width: 480px) {
+  .site-main .banner .logo img {
+    height: 248px;
+    width: 360px;
+  }
+  .site-main .banner .video {
+    display: none;
+  }
+  .site-main #story .story__article {
+    text-align: justify;
+    font-size: 16px;
+  }
+  .site-main #characters {
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+  }
+  .site-main #characters h3 {
+    animation: none;
+    margin: 0;
+    padding: 0;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .site-main #characters .list-characters .swiper-slide {
+    height: auto;
+  }
+  .site-main #characters .list-characters .swiper-slide figure {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .site-main #place {
+    justify-content: center;
+    align-items: center;
+  }
+  .site-main #place div {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  .site-main #place div h3 {
+    margin: 0;
+    height: -moz-fit-content;
+    height: fit-content;
+    font-size: 3rem;
+    width: 100%;
+  }
+  .site-main #place div p {
+    width: 100%;
+    margin: 0;
+    padding: 40px;
+  }
+  .site-main #studio {
+    margin: 50px 0;
+  }
+  .site-main #studio h2 {
+    margin: 0 auto;
+    padding: 20px 40px 35px;
+    width: 100%;
+  }
+  .site-main #studio div {
+    margin: 0;
+    width: 100%;
+  }
+  .site-main #studio div p {
+    width: 100%;
+    padding: 0 40px;
+    text-align: justify;
+  }
+  .site-main #nomination {
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  .site-main #nomination::before {
+    content: url("");
+  }
+  .site-main #nomination::after {
+    content: url("");
+  }
+  .site-main #nomination .nomination-container {
+    flex-direction: column;
+    height: 300px;
+    width: 100%;
+    margin: 0;
+    justify-content: space-around;
+  }
+  .site-main #nomination .nomination-container .text {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    font-size: 16px;
+    padding: 0;
+    text-align: center;
+  }
+  .site-main #nomination .nomination-container img {
+    margin: 0 auto;
+  }
+  .site-footer {
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 10px 0;
+  }
+  .site-footer ul {
+    position: relative;
+    transform-origin: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .site-footer ul::after {
+    content: url("../img/hibiscus_footer.png");
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: none;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.titleFadeInUp {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.titleFadeInUp p {
+  margin: 0;
+  padding: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+/**************** SECTION HEADER VIDEO LOGO *******************/
+.banner {
+  animation: fadeInDown 1s ease-out;
+  position: relative;
+}
+.banner .logo {
+  animation: fadeInUp 1s ease-in;
+  z-index: 1;
+}
+.banner .logo img {
+  height: 496px;
+  width: 720px;
+  animation: titleMoov 10s ease-in-out infinite both;
+}
+.banner .video {
+  position: absolute;
+  height: 100%;
+}
+
+/**************** SECTION STORY *******************/
+.story h2 {
+  height: auto;
+  width: 100%;
+  gap: 0;
+}
+.story h2::after {
+  padding-top: 25px;
+}
+.story .story__article::after {
+  left: calc(50% + 414px);
+  position: absolute;
+  top: 4.5em;
+  display: inline-block;
+  animation: fadeInUp 1s 0s ease-out both, rotate 12s 1.1s linear infinite;
+}
+.story .story__article::before {
+  animation: fadeInUp 1s ease-in-out both;
+}
+.story #characters {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.story #characters h3 {
+  padding: 50px;
+}
+.story #characters .list-characters {
+  width: 100%;
+}
+.story #characters .list-characters .swiper-coverflow {
+  height: auto;
+}
+.story #characters .list-characters .swiper-slide {
+  min-width: 33%;
+  height: auto;
+}
+.story #place {
+  background: none;
+  position: relative;
+}
+.story #place div h3 {
+  padding: 35px 70px;
+  margin-bottom: 0;
+}
+.story #place div h3 p {
+  padding: 0;
+  margin: 0;
+}
+.story #place div > p {
+  text-align: justify;
+  margin: 0;
+  padding: 0 0 0 80px;
+  width: 530px;
+}
+.story #place .clouds {
+  background: url("../img/Studio_Koukaki-image_place.png");
+  position: absolute;
+  height: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  animation: fadeInUp 1s ease-in-out both;
+}
+.story #place .clouds .cloud {
+  position: absolute;
+}
+.story #place .clouds .big-cloud {
+  filter: blur(14px);
+  top: 60px;
+  left: 550px;
+}
+.story #place .clouds .little-cloud {
+  top: 270px;
+  left: 300px;
+  filter: blur(8px);
+}
+
+/**************** SECTION STUDIO *******************/
+#studio {
+  margin-top: 100px;
+  position: relative;
+}
+#studio h2 {
+  margin: 0 auto;
+  transition: all 1s ease-in-out;
+  overflow: visible;
+}
+#studio h2::before, #studio h2::after {
+  padding-top: 25px;
+}
+#studio h2 p {
+  margin: 0;
+  padding: 0;
+}
+#studio div::before {
+  animation: fadeInUp 1s ease-in-out both;
+}
+
+/**************** SECTION NOMINATION *******************/
+#nomination {
+  width: 100%;
+  margin-top: 100px;
+  position: relative;
+}
+#nomination::before {
+  content: url("../img/Sunflower.png");
+  position: absolute;
+  left: 4em;
+  top: 0em;
+}
+#nomination::after {
+  content: url("../img/orchid.png");
+  position: absolute;
+  right: -4em;
+  bottom: 30.8em;
+}
+#nomination .nomination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#nomination .nomination-container .text {
+  padding: 80px;
+  font-size: 42px;
+  background: url("../img/Rectangle23.png") center no-repeat;
+  background-size: 100%;
+  color: white;
+  border: none;
+}
+#nomination .nomination-container img {
+  margin-left: -50px;
+  margin-top: -100px;
+}
+
+/**************** FOOTER *******************/
+.site-footer::before, .site-footer::after {
+  content: "";
+}/*# sourceMappingURL=theme.css.map */

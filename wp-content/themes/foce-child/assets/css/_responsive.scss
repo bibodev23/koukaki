@@ -1,0 +1,131 @@
+/**************** RESPONSIVE *******************/
+
+@media all and (max-width: 480px) {
+    .site-main {
+        .banner {
+            .logo {
+                img {
+                    height: 248px;
+                    width: 360px;
+                }
+            }
+            .video {
+                display: none;
+            }
+        }
+        #story {
+            .story__article {
+                text-align: justify;
+                font-size: 16px;
+            }
+        }
+        #characters {
+            height: fit-content;
+            margin: 0;
+            padding: 0;
+            h3 {
+                animation: none;
+                margin: 0;
+                padding: 0;
+                height: fit-content;
+            }
+            .list-characters {
+                .swiper-slide {
+                    height: auto;
+                    figure {
+                        display: flex;
+                        gap: 20px;
+                        flex-direction: column;
+                        justify-content: space-between;
+                    }
+                }
+            }
+        }
+        #place {
+            justify-content: center;
+            align-items: center;
+            div {
+                display: flex;
+                margin: 0;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                h3 {
+                    margin: 0;
+                    height: fit-content;
+                    font-size: 3rem;
+                    width: 100%;
+                }
+                p {
+                    width: 100%;
+                    margin: 0;
+                    padding: 40px;
+                }
+            }
+        }
+        #studio {
+            margin: 50px 0;
+            h2 {
+                margin: 0 auto;
+                padding: 20px 40px 35px;
+                width: 100%;
+            }
+            div {
+                margin: 0;
+                width: 100%;
+                p {
+                    width: 100%;
+                    padding: 0 40px;
+                    text-align: justify;
+                }
+            }
+        }
+        #nomination {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            &::before {
+                content: url("");
+            }
+            &::after {
+                content: url("");
+            }
+            .nomination-container {
+                flex-direction: column;
+                height: 300px;
+                width: 100%;
+                margin: 0;
+                justify-content: space-around;
+                .text {
+                    width: 100%;
+                    height: fit-content;
+                    font-size: 16px;
+                    padding: 0;
+                    text-align: center;
+                }
+                img {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+    .site-footer {
+        height: fit-content;
+        padding: 10px 0;
+        ul {
+            position: relative;
+            transform-origin: center;
+            flex-direction: column;
+            justify-content: center;
+            &::after {
+                content: url("../img/hibiscus_footer.png");
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                animation: none;
+                height: fit-content;
+                width: fit-content;
+            }
+        }
+    }
+}
