@@ -6,67 +6,68 @@ header {
     z-index: 1000;
     nav {
         .nav-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flexbox;
             width: 100%;
-            height: 80px;
-            padding: 50px;
-            background-color: #ffd5a2;
+            padding: 20px;
+            background-color: $color-navbar;
             .title {
                 a {
                     text-decoration: none;
                     font-size: 22px;
                     font-weight: 700;
-                    
                     color: black;
                 }
-            } 
+            }
             .burger {
                 transform: scale(2);
                 cursor: pointer;
-                transition: all 0.5s ease-in-out;
+                transition: all 3s ease-in-out;
                 position: absolute;
-                right: 5%;
+                right: 8%;
             }
         }
         .nav-links {
-            // position: relative;
             transform-origin: top;
             transform: scaleY(0);
             opacity: 0;
             transition: all 1s ease-in-out;
             height: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+            @include flexbox(column, space-between);
             width: 100%;
-            background-color: #fff5e9;
-            &.active {
+            background-color: $color-menu-fullscreen;
+            overflow: hidden;
+            &.activeMenu {
                 transform: scaleY(1);
                 opacity: 1;
-                height: 98vh;
-                padding: 50px;
+                height: 97vh;
+                padding: 50px 0 100px;
+                overflow: hidden;
+                &::after {
+                    content: url("../img/menu/hibiscus_footer.png");
+                    position: absolute;
+                    bottom: -24em;
+                    right: -24em;
+                    animation: rotate 12s linear infinite both;
+                }
             }
             ul {
                 list-style-type: none;
                 text-align: center;
-                display: flex;
-                flex-direction: column;
+                @include flexbox(column, flex-start);
                 gap: 30px;
-                padding: 0;
-                margin: 0;
-
+                @include reset-margin-padding;
+                width: 100%;
+                height: 100%;
                 li {
                     width: 100%;
                     text-align: center;
+                    position: relative;
                     a {
                         font-size: 64px;
                         text-decoration: none;
                         transition: all 0.2s ease-in-out;
                         &:hover {
-                            text-shadow: 0px 0px 20px $color-shadow-text-menu ;
+                            text-shadow: 0px 0px 20px $color-shadow-text-menu;
                             color: black;
                         }
                     }
@@ -77,59 +78,53 @@ header {
                     &:nth-child(2) {
                         &::before {
                             content: url("../img/menu/cat.png");
-                            // transform: scale(2.8);
-                            top: 200px;
-                            left: 250px;
+                            top: -4em;
+                            left: 20em;
                             animation: titleMoov 5s infinite linear both;
                         }
                         &::after {
                             content: url("../img/menu/Sunflower.png");
-                            right: 150px;
-                            top: 120px;
-                            animation : rotate 12s linear infinite both;
+                            top: -8em;
+                            right: 14em;
+                            animation: rotate 12s linear infinite both;
                         }
                     }
                     &:nth-child(3) {
                         &::before {
                             content: url("../img/menu/orchid.png");
-                            left: 0;
-                            top: 80px;
-                            animation : rotate 12s linear infinite both;
-
+                            top: -20em;
+                            left: -4em;
+                            animation: rotate 12s linear infinite both;
                         }
                         &::after {
                             content: url("../img/menu/random_flower.png");
-                            right: 0;
-                            top: 400px;
-                            animation :rotate 12s linear infinite both, toShrink 1s;
-                            border: 2px solid red;
+                            top: 3em;
+                            right: -2.5em;
+                            animation: rotate 12s linear infinite both;
+                            height: 75px;
+                            width: 75px;
                         }
                     }
                     &:nth-child(4) {
                         &::before {
                             content: url("../img/menu/Flower.png");
-                            left:180px;
-                            animation : rotate 12s linear infinite both;
+                            top: -2em;
+                            left: 15em;
+                            animation: rotate 12s linear infinite both;
                         }
                         &::after {
                             content: url("../img/menu/Group\ 180.png");
-                            right: 200px;
-                            top: 450px;
-                            transform: scale(.7);
+                            top: -2em;
+                            right: 15em;
+                            animation: titleMoov 5s 0.3s infinite linear both;
                         }
                     }
                     &:nth-child(5) {
                         &::before {
                             content: url("../img/menu/cat-2.png");
-                            left: 0;
-                            top: 66%;
-                        }
-                        &::after {
-                            content: url("../img/hibiscus_footer.png");
-                            right: 0;
-                            transform: translate(50%, 50%);
-                            bottom: 0;
-                            
+                            top: 10em;
+                            left: 5em;
+                            animation: titleMoov 5s 1s infinite linear both;
                         }
                     }
                 }

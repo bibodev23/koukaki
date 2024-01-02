@@ -37,7 +37,7 @@
                 <div class="nav-links">
                     <ul id="links">
                         <li id="logo-menu"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/menu/logo.png'; ?>" alt="logo Fleurs d'oranger & chats errants"></a></li>
-                        <li><a href="#story">Histoire</a></li>
+                        <li><a href="#">Histoire</a></li>
                         <li><a href="#characters">Personnages</a></li>
                         <li><a href="#place">Lieu</a></li>
                         <li><a href="#studio">Studio Koukaki</a></li>

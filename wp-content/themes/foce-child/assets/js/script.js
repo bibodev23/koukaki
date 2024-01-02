@@ -1,12 +1,11 @@
-/*****************   ANIMATION TITRE SECTION ********************/
-
+/*****************   ANIMATION TITRE SECTION AVEC L'API INTERSECTION OBSERVER ********************/
 // Configurer les options pour l'Intersection Observer
 const options = {
-  threshold: 0.2, // Le seuil d'intersection à partir duquel l'observation est déclenchée
+  // L'obersation sera déclenchée lorsque 20% de l'élément est visible
+  threshold: 0.2
 };
-
 // Créer une instance de l'Intersection Observer avec une fonction de callback
-const observer = new IntersectionObserver(function (entries, observer) {
+const observer = new IntersectionObserver(function (entries) {
   entries.forEach((entry) => {
     // Vérifier si la section est en vue
     if (entry.isIntersecting) {
@@ -25,10 +24,9 @@ elementFadeIn.forEach((element) => {
 });
 
 
-/*****************   SWIPER   ********************/
+/*****************   SWIPER JS AVEC EFFET COVERFLOW   ********************/
 // J'initialise Swiper lors du chargement du "DOMContentLoaded' avant le chargement total de la page "LOAD"
 document.addEventListener('DOMContentLoaded', function () {
-
   var swiper = new Swiper(".mySwiper", {
     effect: "coverflow",
     Autoplay: true,
@@ -49,34 +47,41 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-/*****************   ROTATE FLOWER   ********************/
 
+/*****************   ROTATE FLOWER   ********************/
 const flowerAfter = document.querySelectorAll(".story h2, .site-footer ul");
 flowerAfter.forEach((flower) => {
   flower.classList.add('rotate-after');
   flower.classList.add('speed');
-})
+});
 
 const flowerAfterBefore = document.querySelectorAll("#studio h2, #nomination");
 flowerAfterBefore.forEach((flower) => {
   flower.classList.add('rotate-after-before');
-})
+  flower.classList.add('speed');
+});
+
 
 /*****************   PARALLAX + ROTATE DURATION POUR LES FLEURS   ********************/
+const allFlowers = document.querySelectorAll(".speed");
+const logo =  document.querySelector('.logo');
+const bigCloud = document.querySelector('.big-cloud');
+const littleCloud = document.querySelector('.little-cloud');
 
-const allFlowers = document.querySelectorAll(".speed")
 window.addEventListener('scroll', function () {
   let scrolled = window.scrollY;
-  document.querySelector('.logo').style.transform = `translateY(${scrolled * 0.2}px)`;
-  document.querySelector('.big-cloud').style.transform = `translateX(${scrolled * 0.2}px)`;
-  document.querySelector('.little-cloud').style.transform = `translateX(${scrolled * 0.2}px)`;
+  //parallax
+  logo.style.transform = `translateY(${scrolled * 0.25}px)`;
+  bigCloud.style.transform = `translateX(${scrolled * 0.2}px)`;
+  littleCloud.style.transform = `translateX(${scrolled * 0.2}px)`;
+  //rotate
   scrolled *= 0.03;
-  scrolled = scrolled > 13 ? 13 : scrolled;
+  scrolled = scrolled > 12 ? 12 : scrolled;
+  scrolled = scrolled < 7 ? 7 : scrolled;
   allFlowers.forEach((flower) => {
     flower.style.setProperty('--rotate-duration', `${scrolled}s`);
   })
-});
-
+})
 
 
 /*****************  MENU  ********************/
@@ -84,10 +89,10 @@ const burger = document.querySelector('.burger');
 const iconBurger = "&#9776";
 const iconCross = "&#10005";
 const menu = document.querySelector('.nav-links');
-const links = document.querySelectorAll('.nav-links li');
+const links = document.querySelectorAll('.nav-links li a');
 
 function closeMenu () {
-  menu.classList.remove("active");
+  menu.classList.remove("activeMenu");
   burger.innerHTML = iconBurger;
 }
 
@@ -96,6 +101,13 @@ links.forEach((link) => {
 })
 
 burger.addEventListener("click", () => {
-  menu.classList.toggle("active");
-  burger.innerHTML = menu.classList.contains("active") ? iconCross : iconBurger;
+  menu.classList.toggle("activeMenu");
+  burger.innerHTML = menu.classList.contains("activeMenu") ? iconCross : iconBurger;
+  let delay = 0.5;
+  const delayAdd = 0.3;
+  links.forEach((link) => {
+    link.classList.toggle("fadeInUp")
+    link.style.animationDelay = delay + "s";
+    delay += delayAdd;
+  })
 })

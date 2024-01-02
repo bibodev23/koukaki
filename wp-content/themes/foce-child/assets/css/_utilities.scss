@@ -1,14 +1,28 @@
 /**************** MIXINS *******************/
+@mixin reset-margin-padding {
+    margin: 0;
+    padding: 0;
+}
 
+@mixin flexbox($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
 /**************** VARIABLES *******************/
 // Variable en css afin de pouvoir les modifier avec le JS
 :root {
     --rotate-duration: 12s;
-    --delay-animation: 0s;
+    --delay-animation: 12s;
 }
 
-//Variable en sccs
+//Variable en sccs 
+$color-navbar: #ffd5a2;
+$color-menu-fullscreen : #fff5e9;
 $color-shadow-text-menu: #ff5c00;
+
+$breakpoint-mobile: 480px;
 
 /**************** ANIMATIONS *******************/
 @keyframes titleMoov {

@@ -2,7 +2,7 @@
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
-     //j'apelle mon fichier css pour les modfis apportées
+     /*  j'apelle mon fichier css pour les modifications apportées  */
      wp_enqueue_style('theme-style', get_stylesheet_directory_uri() . '/assets/css/theme.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/theme.css'));
 }
 
@@ -17,11 +17,11 @@ if ( get_stylesheet() !== get_template() ) {
     } );
 }
 function enqueue_swiper() {
-    // Inclure le CDN de SwiperJS
+    /*  J'appelle le CDN de SwiperJS  */ 
     wp_enqueue_style('swiper-style', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
     wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
 
-    // Inclure ton script personnalisé
+    /*  j'appelle mon script  pour le code swiper  */ 
     wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/assets/js/script.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_swiper');
