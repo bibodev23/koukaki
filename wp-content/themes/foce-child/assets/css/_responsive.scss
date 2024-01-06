@@ -125,6 +125,7 @@
                 align-items: center;
                 div {
                     @include flexbox;
+                    flex-direction: column;
                     @include reset-margin-padding;
                     width: 100%;
                     h3 {

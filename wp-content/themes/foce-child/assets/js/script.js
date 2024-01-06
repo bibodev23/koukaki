@@ -51,14 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
 /*****************   ROTATE FLOWER   ********************/
 const flowerAfter = document.querySelectorAll(".story h2, .site-footer ul");
 flowerAfter.forEach((flower) => {
-  flower.classList.add('rotate-after');
   flower.classList.add('speed');
+  flower.classList.add('rotate-after');
 });
 
 const flowerAfterBefore = document.querySelectorAll("#studio h2, #nomination");
 flowerAfterBefore.forEach((flower) => {
-  flower.classList.add('rotate-after-before');
   flower.classList.add('speed');
+  flower.classList.add('rotate-after-before');  
 });
 
 
@@ -68,6 +68,7 @@ const logo =  document.querySelector('.logo');
 const bigCloud = document.querySelector('.big-cloud');
 const littleCloud = document.querySelector('.little-cloud');
 
+
 window.addEventListener('scroll', function () {
   let scrolled = window.scrollY;
   //parallax
@@ -75,13 +76,15 @@ window.addEventListener('scroll', function () {
   bigCloud.style.transform = `translateX(${scrolled * 0.2}px)`;
   littleCloud.style.transform = `translateX(${scrolled * 0.2}px)`;
   //rotate
-  scrolled *= 0.03;
-  scrolled = scrolled > 12 ? 12 : scrolled;
-  scrolled = scrolled < 7 ? 7 : scrolled;
+  scrolled = 12 - (scrolled * 0.005);
+  scrolled = scrolled  > 12 ? 12 : scrolled;
+  scrolled = scrolled  < 3 ? 3 : scrolled;
+  console.log(scrolled);
   allFlowers.forEach((flower) => {
     flower.style.setProperty('--rotate-duration', `${scrolled}s`);
   })
 })
+
 
 
 /*****************  MENU  ********************/
